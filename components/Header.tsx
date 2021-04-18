@@ -1,4 +1,17 @@
-import {Flex, Image, Text} from '@chakra-ui/react'
+import {
+  Flex,
+  Image,
+  Text,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  HStack
+} from '@chakra-ui/react'
+
+import Link from 'next/link'
+
+import { FiChevronRight } from 'react-icons/fi'
 
 export const Header = () =>{
     return(
@@ -10,20 +23,27 @@ export const Header = () =>{
           alignItems="center"
           backgroundColor={'green.400'}
           color={'gray.900'}
-          mb="4"          
-        > 
-            <Image boxSize="100px" height="inherit" src="logo.svg"/>
-            <Flex align="center" m="auto" height="inherit">
-                <Image boxSize="100px" height="inherit" src="tx_marca_1.svg"/>
-                <Text
-                    fontWeight="bold"
-                    fontSize="3xl"
-                    letterSpacing="tight"
-                    width="64"
-                >
-                    Serviços Web
-                </Text>
-            </Flex>
+          mb="4"
+        >
+          <HStack m="auto">
+            <Image width="12" src="logo.svg"/>
+
+            <Breadcrumb spacing="8px" separator={<FiChevronRight color="gray.500" />}>
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink as={Link} href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+
+              <BreadcrumbItem>
+                <BreadcrumbLink as={Link} href="/posts">Posts</BreadcrumbLink>
+              </BreadcrumbItem>
+
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink as={Link} href="/contact">Contact</BreadcrumbLink>
+              </BreadcrumbItem>
+            </Breadcrumb>
+
+            <Image width="10" src="tx_marca_1.svg"/>
+          </HStack>
         </Flex>
     )
 }
