@@ -1,49 +1,69 @@
 import {
   Flex,
-  Image,
   Text,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  HStack
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+  Link as ChakraLink
 } from '@chakra-ui/react'
 
 import Link from 'next/link'
+import React from 'react'
+import { FiHome, FiMenu, FiMail, FiBookOpen } from 'react-icons/fi'
 
-import { FiChevronRight } from 'react-icons/fi'
 
-export const Header = () =>{
+export function Header(){
     return(
         <Flex
           as="header"
           width="100%"
           maxWidth={1440}
-          height="14"
+          height="12"
           alignItems="center"
-          backgroundColor={'green.400'}
           color={'gray.900'}
           mb="4"
+          bgGradient="linear(to-r, #11f511, gray.900)"
         >
-          <HStack m="auto">
-            <Image width="12" src="logo.svg"/>
 
-            <Breadcrumb spacing="8px" separator={<FiChevronRight color="gray.500" />}>
-              <BreadcrumbItem isCurrentPage>
-                <BreadcrumbLink as={Link} href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            aria-label="Options"
+            icon={<FiMenu />}
+            variant="outline"
+          />
+          <MenuList>
+            <Link href="/" passHref >
+              <ChakraLink>
+                <MenuItem icon={<FiHome />} >
+                  <Text>Home</Text>
+                </MenuItem>
+              </ChakraLink>
+            </Link>
 
-              <BreadcrumbItem>
-                <BreadcrumbLink as={Link} href="/posts">Posts</BreadcrumbLink>
-              </BreadcrumbItem>
+            <Link href="/posts" passHref>
+              <ChakraLink>
+                <MenuItem icon={<FiBookOpen />} >
+                  <Text>Postagens</Text>
+                </MenuItem>
+              </ChakraLink>
+            </Link>
 
-              <BreadcrumbItem isCurrentPage>
-                <BreadcrumbLink as={Link} href="/contact">Contact</BreadcrumbLink>
-              </BreadcrumbItem>
-            </Breadcrumb>
+            <Link href="/contact" passHref >
+              <ChakraLink>
+                <MenuItem icon={<FiMail />} >
+                  <Text>Contato</Text>
+                </MenuItem>
+              </ChakraLink>
+            </Link>
+          </MenuList>
+        </Menu>
 
-            <Image width="10" src="tx_marca_1.svg"/>
-          </HStack>
+          <Text p={4} fontWeight="bold">
+            BlogFamily - Obrigado pela visita!
+          </Text>
         </Flex>
     )
 }

@@ -8,11 +8,11 @@ export function Footer(){
           width="100%"
           maxWidth={1440}
           height="14"
-          backgroundColor={'green.400'}
           color={'gray.900'}
-          mt="4"       
-        > 
-            <HStack m="auto" >
+          mt="4"
+          bgGradient="linear(to-r, #11f511, gray.900)"
+        >
+            <HStack pl={4} >
                 <ChakraLink isExternal href="https://wa.me/5581992713545?text=Deixe seu recado">
                     <Icon as={FaWhatsapp} height="10" width="10"/>
                 </ChakraLink>
@@ -26,14 +26,14 @@ export function Footer(){
                 </ChakraLink>
             </HStack>
 
-            <Stack m="auto" >
+            <Stack pl={4} >
                 <Text fontWeight="400">
                     tss.webapps@gmail.com
                 </Text>
                 <Text fontWeight="400">
-                    81 9-9271-3545 
-                </Text>                    
-            </Stack>                
+                    81 9-9271-3545
+                </Text>
+            </Stack>
         </Flex>
     )
 }
