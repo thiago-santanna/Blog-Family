@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { Container, Flex, Stack } from '@chakra-ui/react'
+import { Container, Flex, Stack, Box, Image, HStack, Text, Icon } from '@chakra-ui/react'
 import Head from 'next/head'
 import { Footer } from '../../components/Footer'
 import { Header } from '../../components/Header'
@@ -10,6 +10,8 @@ import { getPrismicClient } from '../../services/prismic'
 import { RichText } from 'prismic-dom'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import { FiCalendar, FiUser } from 'react-icons/fi'
+
 
 interface IPost {
   id: string
@@ -20,19 +22,19 @@ interface IPost {
     title: string
     author: string
     date_posted: string
-    image:{
-      url: string
-    }
+    image: string
+    content: string
   }
 }
 
 interface IHomeProps {
-  resultposts: IPost[]
+  post: IPost
 }
 
-export default function Post({ resultposts }:IHomeProps):ReactElement {
-  const [posts, setPosts] = useState<IPost[]>(resultposts)
+export default function Post({ post }:IHomeProps):ReactElement {
+  const [readPost, getReadPost] = useState(post)
 
+  console.log(readPost)
   return (
     <Main>
       <Head>
@@ -41,29 +43,36 @@ export default function Post({ resultposts }:IHomeProps):ReactElement {
       <Header />
 
       <Flex height="100%">
-      <Container>
-          <Flex direction="column">
-            <h1>IMAGEM</h1>
-          </Flex>
-          <Stack direction="row">
-            <h1>Autor</h1>
-            <h1>14/04/2021 11:32</h1>
-          </Stack>
-          <article>
-            <p>
-              There are many benefits to a joint design and development system.
-              Not only does it bring benefits to the design team, but it also brings
-              benefits to engineering teams. It makes sure that our experiences have
-              a consistent look and feel, not just in our design specs, but in production
-            </p>
-            <p>
-              There are many benefits to a joint design and development system.
-              Not only does it bring benefits to the design team, but it also brings
-              benefits to engineering teams. It makes sure that our experiences have
-              a consistent look and feel, not just in our design specs, but in production
-            </p>
-          </article>
-        </Container>
+      <Container maxWidth={["sm", "md", "xl", 1000]}>
+
+        <HStack>
+          <Image
+            src={readPost.data.image}
+            alt="Foto_do_post"
+            borderRadius="10"
+            boxSize={["32","36", "40", "48"]}
+            />
+          <Text as="h1" fontSize={["xl","1xl","3xl"]}>
+            {post.data.title}
+          </Text>
+        </HStack>
+
+        <Stack spacing={4}>
+          <Text>
+            <Icon as={FiUser} boxSize="4" mr={4}/>
+            {post.data.author}
+          </Text>
+
+          <Text>
+              <Icon as={FiCalendar} boxSize="4" mr={4} />
+              {post.data.date_posted}
+          </Text>
+        </Stack>
+
+        <Flex mt={4} >
+          <article dangerouslySetInnerHTML={{__html:readPost.data.content}} />
+        </Flex>
+      </Container>
       </Flex>
       <Footer />
     </Main>
@@ -98,15 +107,14 @@ export const getStaticProps:GetStaticProps = async ({ params }) => {
           locale: ptBR
         }
       ),
-      image: postsResult.data.image.url
+      image: postsResult.data.image.url,
+      content: RichText.asHtml(postsResult.data.content)
     }
   }
 
-  console.log(post)
-
   return {
     props:{
-
+      post,
     }
   }
 }

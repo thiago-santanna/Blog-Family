@@ -17,7 +17,7 @@ export default function Home() {
     <Main>
       <Head><title>Home | Blog-family</title></Head>
       <Header />
-      <Flex height="100%">
+      <Flex>
         <Container>
           <VStack>
             <Heading

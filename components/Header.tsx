@@ -24,7 +24,8 @@ export function Header(){
           alignItems="center"
           color={'gray.900'}
           mb="4"
-          bgGradient="linear(to-r, #11f511, gray.900)"
+          pl={4}
+          bgGradient="linear(to-r, #16f062, gray.900)"
         >
 
         <Menu>

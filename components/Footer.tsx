@@ -10,7 +10,7 @@ export function Footer(){
           height="14"
           color={'gray.900'}
           mt="4"
-          bgGradient="linear(to-r, #11f511, gray.900)"
+          bgGradient="linear(to-r, #16f062, gray.900)"
         >
             <HStack pl={4} >
                 <ChakraLink isExternal href="https://wa.me/5581992713545?text=Deixe seu recado">
