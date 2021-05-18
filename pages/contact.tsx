@@ -11,7 +11,6 @@ import {
   useToast
 } from "@chakra-ui/react"
 import { Header } from "../components/Header"
-import { Footer } from "../components/Footer"
 import { Main } from "../components/Main"
 
 interface contactsData {
@@ -77,7 +76,7 @@ export default function Contact() {
             mt="4"
             p="10"
             borderTopRadius="10"
-            bgGradient="linear(to-r, #16f062, gray.900)">
+            bgGradient="linear(to-r, #319795, gray.900)">
             <Text align="center" fontSize="4xl">
               Deixe seu recado
             </Text>
@@ -137,7 +136,6 @@ export default function Contact() {
           </form>
         </Container>
       </Flex>
-      <Footer />
     </Main>
   )
 }

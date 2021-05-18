@@ -5,13 +5,12 @@ import Head from 'next/head'
 import { Main } from "../../components/Main";
 import { Header } from "../../components/Header";
 import { Flex, Container, Text, List, ListItem, Icon } from "@chakra-ui/react";
-import { Footer } from "../../components/Footer";
 import Prismic from '@prismicio/client'
 import { getPrismicClient } from '../../services/prismic'
 import { RichText } from 'prismic-dom'
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { FiCalendar, FiUser, FiArrowRight } from 'react-icons/fi'
+import { FiCalendar, FiUser, FiHeart } from 'react-icons/fi'
 
 interface IListPost {
   id: string
@@ -57,7 +56,7 @@ export default function ListPosts({ resultposts }:IHomeProps):ReactElement {
                   {post.data.title}
                     <Link href={`/posts/${post.uid}`}>
                         <a>
-                          <Icon color="yellow.300" as={FiArrowRight} boxSize="6"/>
+                          <Icon color="pink.500" as={FiHeart} boxSize="6"/>
                         </a>
                     </Link>
                   </Text>
@@ -67,7 +66,6 @@ export default function ListPosts({ resultposts }:IHomeProps):ReactElement {
           </List>
         </Container>
       </Flex>
-      <Footer />
     </Main>
   )
 }

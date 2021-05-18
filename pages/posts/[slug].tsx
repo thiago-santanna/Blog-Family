@@ -2,7 +2,6 @@ import { ReactElement, useState } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { Container, Flex, Stack, Box, Image, HStack, Text, Icon } from '@chakra-ui/react'
 import Head from 'next/head'
-import { Footer } from '../../components/Footer'
 import { Header } from '../../components/Header'
 import { Main } from '../../components/Main'
 import Prismic from '@prismicio/client'
@@ -74,7 +73,6 @@ export default function Post({ post }:IHomeProps):ReactElement {
         </Flex>
       </Container>
       </Flex>
-      <Footer />
     </Main>
   )
 }

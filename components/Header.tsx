@@ -25,7 +25,7 @@ export function Header(){
           color={'gray.900'}
           mb="4"
           pl={4}
-          bgGradient="linear(to-r, #16f062, gray.900)"
+          bgGradient="linear(to-r, #319795, gray.900)"
         >
 
         <Menu>
